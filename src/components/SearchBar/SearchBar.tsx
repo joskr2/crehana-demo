@@ -3,9 +3,9 @@ import React, { useState } from "react";
 const SearchBar: React.FC = () => {
   const [search, setSearch] = useState<String>("");
   return (
-    <>
-      <div className="p-8">
-        <div className="bg-white flex items-center rounded-full shadow-xl">
+    <div className="flex flex-wrap">
+      <div className="p-8 flex-1 ">
+        <div className="bg-white flex items-center rounded-full shadow-xl ">
           <input
             className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
             id="search"
@@ -13,8 +13,8 @@ const SearchBar: React.FC = () => {
             placeholder="Buscar por pais o codigo"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <div className="p-4">
-            <button className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
+          <div className="p-4 ">
+            <button className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -32,8 +32,32 @@ const SearchBar: React.FC = () => {
             </button>
           </div>
         </div>
+        
       </div>
-    </>
+
+      <div className="flex transform translate-y-4">
+      <div className="p-8  flex-grow">
+        <select
+          className="rounded-full w-full py-4 px-6 text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+          id="select-1"
+        >
+          <option>New Mexico</option>
+          <option>Missouri</option>
+          <option>Texas</option>
+        </select>
+      </div>
+      <div className="p-8  flex-grow">
+        <select
+          className="rounded-full w-full py-4 px-6 text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+          id="select-1"
+        >
+          <option>New Mexico</option>
+          <option>Missouri</option>
+          <option>Texas</option>
+        </select>
+      </div>
+      </div>
+    </div>
   );
 };
 
