@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
+import {
+  searchState,
+  languageState,
+  currencyState,
+  regionState,
+} from "../../globalRecoilState/Atoms/Atoms";
+interface Props {
+  languageOptions: string[];
+  currencyOptions: string[];
+  regionOptions: string[];
+}
 
-const SearchBar: React.FC = () => {
-  const [search, setSearch] = useState<String>("");
+const SearchBar: React.FC<Props> = ({
+  languageOptions,
+  currencyOptions,
+  regionOptions,
+}) => {
+
+  const [search, setSearch] = useRecoilState<string>(searchState);
+  const [language, setLanguage] = useRecoilState<string>(languageState);
+  const [currency, setCurrency] = useRecoilState<string>(currencyState);
+  const [region, setRegion] = useRecoilState<string>(regionState);
+
   return (
     <div className="flex flex-wrap">
       <div className="p-8 flex-1 ">
@@ -10,7 +31,7 @@ const SearchBar: React.FC = () => {
             className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
             id="search"
             type="text"
-            placeholder="Buscar por pais o codigo"
+            placeholder="Buscar por pais o código"
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className="p-4 ">
@@ -32,30 +53,51 @@ const SearchBar: React.FC = () => {
             </button>
           </div>
         </div>
-        
       </div>
 
       <div className="flex transform translate-y-4">
-      <div className="p-8  flex-grow">
-        <select
-          className="rounded-full w-full py-4 px-6 text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
-          id="select-1"
-        >
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
-        </select>
-      </div>
-      <div className="p-8  flex-grow">
-        <select
-          className="rounded-full w-full py-4 px-6 text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
-          id="select-1"
-        >
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
-        </select>
-      </div>
+        <div className="p-8  flex-grow">
+          <select
+            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            id="select-1"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            {languageOptions.map((lg, index) => (
+              <option key={index} value={lg}>
+                {lg}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="p-8  flex-grow ">
+          <select
+            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            id="select-1"
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            {currencyOptions.map((cr, index) => (
+              <option key={index} value={cr}>
+                {cr}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="p-8  flex-grow">
+          <select
+            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            id="select-1"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+          >
+            {regionOptions.map((rg, index) => (
+              <option key={index} value={rg}>
+                {rg}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
