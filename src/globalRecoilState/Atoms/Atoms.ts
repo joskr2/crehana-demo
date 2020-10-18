@@ -6,13 +6,13 @@ export const searchState: RecoilState<string> = atom({
 });
 export const languageState: RecoilState<string> = atom({
   key: "languageState",
-  default: "",
+  default: "Idioma",
 });
 export const currencyState: RecoilState<string> = atom({
   key: "currencyState",
-  default: "",
+  default: "Moneda",
 });
 export const regionState: RecoilState<string> = atom({
   key: "regionState",
-  default: "",
+  default: "Region",
 });

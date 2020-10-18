@@ -1,5 +1,6 @@
 import React from "react";
-import SearchBar from "./../src/components/SearchBar/SearchBar";
+import Card from "../components/Card";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Home: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Home: React.FC = () => {
         currencyOptions={["S/", "$/", "D/"]}
         regionOptions={["region1", "region2", "region3"]}
       />
+      <Card/>
     </>
   );
 };

@@ -56,10 +56,10 @@ const SearchBar: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="flex transform translate-y-4">
-        <div className="p-8  flex-grow">
+      <div className="flex ">
+        <div className="  flex-grow">
           <select
-            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10 w-full rounded-l-3xl py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -71,9 +71,9 @@ const SearchBar: React.FC<Props> = ({
             ))}
           </select>
         </div>
-        <div className="p-8  flex-grow ">
+        <div className="flex-grow">
           <select
-            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10 w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
@@ -85,9 +85,9 @@ const SearchBar: React.FC<Props> = ({
             ))}
           </select>
         </div>
-        <div className="p-8  flex-grow">
+        <div className="flex-grow">
           <select
-            className="rounded-full w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10 w-full rounded-r-3xl p-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={region}
             onChange={(e) => setRegion(e.target.value)}
