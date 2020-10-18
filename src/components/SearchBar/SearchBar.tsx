@@ -18,6 +18,7 @@ const SearchBar: React.FC<Props> = ({
   regionOptions,
 }) => {
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [search, setSearch] = useRecoilState<string>(searchState);
   const [language, setLanguage] = useRecoilState<string>(languageState);
   const [currency, setCurrency] = useRecoilState<string>(currencyState);
