@@ -40,18 +40,6 @@ const GET_COUNTRY_INFO = gql`
         emoji
       }
     }
-    
-    getCountry:Country {
-      Language {
-        name
-      }
-      Currency {
-        name
-      }
-      Region {
-        name
-      }
-    }
   }
 `;
 export { GET_COUNTRY_INFO };

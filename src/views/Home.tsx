@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { useQuery } from "@apollo/client";
 import { GET_LISTS } from "./../queries/GetLists/GetLists";
-import Card from "../components/Card";
+import Card from "./../components/Card/Card";
 import SearchBar from "../components/SearchBar/SearchBar";
 import {
   currencyListState,
