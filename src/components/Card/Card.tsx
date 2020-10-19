@@ -106,15 +106,15 @@ const Card: React.FC = () => {
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={""} alt="country_flag" />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
+        <div className="font-bold text-xl mb-2"></div>
         <p className="text-gray-700 text-base">
-          <strong>Código: </strong> {alphaCode}
+          <strong>Código: </strong> 
         </p>
         <p className="text-gray-700 text-base">
-          <strong>Capital: </strong> {capital}
+          <strong>Capital: </strong> 
         </p>
         <p className="text-gray-700 text-base">
-          <strong>Moneda: </strong> {currencyName}
+          <strong>Moneda: </strong> 
         </p>
         <button
           className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-auto"
