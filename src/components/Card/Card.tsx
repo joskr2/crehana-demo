@@ -1,39 +1,110 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { searchState } from "../../globalRecoilState/Atoms/Atoms";
+import { useQuery } from "@apollo/client";
+import { GET_COUNTRY_INFO } from "./../../queries/GetCountryInfo/GetCountryInfo";
 
-interface Props {
-  svg: string;
-  name: string;
-  alphaCode: string;
-  capital: string;
-  currencyName: string;
-  currencySymbol: string;
-  area: string;
-  gini: string;
-  peopleDensidity: string;
-  naiveName: string;
-  cod: string;
-  numberOfHabitants: string;
-}
+const Card: React.FC = () => {
+  const searchTerm = useRecoilValue<string>(searchState);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [infoDetail, setInfoDetail] = useState<string[]>([""]);
+  const { data } = useQuery(GET_COUNTRY_INFO, {
+    variables: {
+      name: searchTerm,
+      alpha2Code: "AG",
+    },
+  });
 
-const Card: React.FC<Props> = ({
-  svg,
-  name,
-  alphaCode,
-  capital,
-  currencyName,
-  currencySymbol,
-  area,
-  gini,
-  peopleDensidity,
-  naiveName,
-  cod,
-  numberOfHabitants,
-}) => {
-  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    let isMounted = true; // note this flag denote mount status
+
+    const functionWithPromise = (item: any) => {
+      //a function that returns a promise
+      return Promise.resolve(item);
+    };
+    const anAsyncFunction = async (item: any) => {
+      return functionWithPromise(item);
+    };
+
+    const getData = async () => {
+      if (data !== undefined) {
+        if (
+          data.searchByName !== undefined &&
+          data.searchByName !== null &&
+          data.searchByName.length != null &&
+          data.searchByName.length > 0
+        ) {
+          data.searchByName!.map(
+            (a: {
+              name: any;
+              capital: any;
+              currencies: any;
+              area: any;
+              populationDensity: any;
+              nativeName: any;
+              numericCode: any;
+              population: any;
+              flag: any;
+            }) =>
+              anAsyncFunction({
+                name: a.name,
+                capital: a.capital,
+                currencies: a.currencies,
+                area: a.area,
+                populationDensity: a.populationDensity,
+                nativeName: a.nativeName,
+                numericCode: a.numericCode,
+                population: a.population,
+                flag: a.flag,
+              })
+          );
+        } else if (
+          data.searchByAlpha2Code !== undefined &&
+          data.searchByAlpha2Code !== null &&
+          data.searchByAlpha2Code.length != null &&
+          data.searchByAlpha2Code.length > 0
+        ) {
+          data.searchByAlpha2Code!.map(
+            (a: {
+              name: any;
+              capital: any;
+              currencies: any;
+              area: any;
+              populationDensity: any;
+              nativeName: any;
+              numericCode: any;
+              population: any;
+              flag: any;
+            }) =>
+              anAsyncFunction({
+                name: a.name,
+                capital: a.capital,
+                currencies: a.currencies,
+                area: a.area,
+                populationDensity: a.populationDensity,
+                nativeName: a.nativeName,
+                numericCode: a.numericCode,
+                population: a.population,
+                flag: a.flag,
+              })
+          );
+        }
+        return [""];
+      }
+      return [""];
+    };
+    getData().then((data: any) => {
+      if (isMounted) setInfoDetail(data);
+    });
+
+    return () => {
+      isMounted = false;
+    }; // use effect cleanup to set flag false, if unmounted
+  }, [data, setInfoDetail]);
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <img className="w-full" src={svg} alt="country_flag" />
+      <img className="w-full" src={""} alt="country_flag" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{name}</div>
         <p className="text-gray-700 text-base">
@@ -60,9 +131,7 @@ const Card: React.FC<Props> = ({
               onClick={() => setShowModal(false)}
             >
               <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                  {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                     <h3 className="text-3xl font-semibold">
                       Detalles del pais
@@ -78,32 +147,29 @@ const Card: React.FC<Props> = ({
                   </div>
                   <div className="relative p-6 flex-auto">
                     <p className="text-gray-700 text-base">
-                      <strong>Nombre: </strong> {name}
+                      <strong>Nombre: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Código: </strong> {cod}
+                      <strong>Código: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Capital: </strong> {capital}
+                      <strong>Capital: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Moneda `${currencySymbol} `: </strong>{" "}
-                      {currencyName}
+                      <strong>Moneda : </strong>{" "}
+                      
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Área: </strong> {area}
+                      <strong>Área: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Gini: </strong> {gini}
+                      <strong>Densidad Poblacional: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Densidad Poblacional: </strong> {peopleDensidity}
+                      <strong>Nombre Nativo: </strong> 
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Nombre Nativo: </strong> {naiveName}
-                    </p>
-                    <p className="text-gray-700 text-base">
-                      <strong>Población: </strong> {numberOfHabitants}
+                      <strong>Población: </strong> 
                     </p>
                   </div>
                   {/*footer*/}

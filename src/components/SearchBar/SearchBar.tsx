@@ -1,28 +1,117 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import {
   searchState,
   languageState,
   currencyState,
   regionState,
+  currencyListState,
+  laguageListState,
+  regionListState,
 } from "../../globalRecoilState/Atoms/Atoms";
 
-interface Props {
-  languageOptions: string[];
-  currencyOptions: string[];
-  regionOptions: string[];
-}
+import { useQuery } from "@apollo/client";
+import { GET_LISTS } from "./../../queries/GetLists/GetLists";
 
-const SearchBar: React.FC<Props> = ({
-  languageOptions,
-  currencyOptions,
-  regionOptions,
-}) => {
+const SearchBar: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [search, setSearch] = useRecoilState<string>(searchState);
   const [language, setLanguage] = useRecoilState<string>(languageState);
   const [currency, setCurrency] = useRecoilState<string>(currencyState);
   const [region, setRegion] = useRecoilState<string>(regionState);
+
+  const [laguageList, setLanguageList] = useRecoilState<string[]>(
+    laguageListState
+  );
+  const [currencyList, setCurrencyList] = useRecoilState<string[]>(
+    currencyListState
+  );
+  const [regionList, setRegionList] = useRecoilState<string[]>(regionListState);
+  const { data } = useQuery(GET_LISTS);
+
+  useEffect(() => {
+    let isMounted = true; // note this flag denote mount status
+
+    const functionWithPromise = (item: any) => {
+      //a function that returns a promise
+      return Promise.resolve(item);
+    };
+    const anAsyncFunction = async (item: any) => {
+      return functionWithPromise(item);
+    };
+
+    const getData = async () => {
+      if (data !== undefined) {
+        return Promise.all(
+          data.Region!.map((a: { name: any }) => anAsyncFunction(a.name))
+        );
+      }
+      return [""];
+    };
+    getData().then((data: any) => {
+      if (isMounted) setRegionList(data);
+    });
+
+    return () => {
+      isMounted = false;
+    }; // use effect cleanup to set flag false, if unmounted
+  }, [data, setRegionList]);
+
+  useEffect(() => {
+    let isMounted = true; // note this flag denote mount status
+
+    const functionWithPromise = (item: any) => {
+      //a function that returns a promise
+      return Promise.resolve(item);
+    };
+    const anAsyncFunction = async (item: any) => {
+      return functionWithPromise(item);
+    };
+
+    const getData = async () => {
+      if (data !== undefined) {
+        return Promise.all(
+          data.Currency!.map((a: { name: any }) => anAsyncFunction(a.name))
+        );
+      }
+      return [""];
+    };
+    getData().then((data: any) => {
+      if (isMounted) setCurrencyList(data);
+    });
+
+    return () => {
+      isMounted = false;
+    }; // use effect cleanup to set flag false, if unmounted
+  }, [data, setCurrencyList]);
+
+  useEffect(() => {
+    let isMounted = true; // note this flag denote mount status
+
+    const functionWithPromise = (item: any) => {
+      //a function that returns a promise
+      return Promise.resolve(item);
+    };
+    const anAsyncFunction = async (item: any) => {
+      return functionWithPromise(item);
+    };
+
+    const getData = async () => {
+      if (data !== undefined) {
+        return Promise.all(
+          data.Language!.map((a: { name: any }) => anAsyncFunction(a.name))
+        );
+      }
+      return [""];
+    };
+    getData().then((data: any) => {
+      if (isMounted) setLanguageList(data);
+    });
+
+    return () => {
+      isMounted = false;
+    }; // use effect cleanup to set flag false, if unmounted
+  }, [data, setLanguageList]);
 
   return (
     <div className="flex flex-wrap">
@@ -64,7 +153,7 @@ const SearchBar: React.FC<Props> = ({
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
           >
-            {languageOptions.map((lg, index) => (
+            {laguageList.map((lg, index) => (
               <option key={index} value={lg}>
                 {lg}
               </option>
@@ -78,7 +167,7 @@ const SearchBar: React.FC<Props> = ({
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           >
-            {currencyOptions.map((cr, index) => (
+            {currencyList.map((cr, index) => (
               <option key={index} value={cr}>
                 {cr}
               </option>
@@ -92,7 +181,7 @@ const SearchBar: React.FC<Props> = ({
             value={region}
             onChange={(e) => setRegion(e.target.value)}
           >
-            {regionOptions.map((rg, index) => (
+            {regionList.map((rg, index) => (
               <option key={index} value={rg}>
                 {rg}
               </option>
