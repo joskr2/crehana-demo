@@ -9,9 +9,7 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
-import {
-  RecoilRoot
-} from "recoil";
+import { RecoilRoot } from "recoil";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -21,13 +19,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <RecoilRoot>
+  <RecoilRoot>
+    <React.StrictMode>
+      <ApolloProvider client={client}>
         <App />
-      </RecoilRoot>
-    </ApolloProvider>
-  </React.StrictMode>,
+      </ApolloProvider>
+    </React.StrictMode>
+  </RecoilRoot>,
   document.getElementById("root")
 );
 

@@ -87,7 +87,7 @@ const Card: React.FC<Props> = ({
                       <strong>Capital: </strong> {capital}
                     </p>
                     <p className="text-gray-700 text-base">
-                      <strong>Moneda `(${currencySymbol} )`: </strong>{" "}
+                      <strong>Moneda `${currencySymbol} `: </strong>{" "}
                       {currencyName}
                     </p>
                     <p className="text-gray-700 text-base">
