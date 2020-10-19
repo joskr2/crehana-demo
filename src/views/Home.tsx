@@ -111,7 +111,6 @@ const Home: React.FC = () => {
         currencyOptions={currencyList}
         regionOptions={regionList}
       />
-      {console.log(data, "en Home")}
       <Card
         svg=""
         name=""

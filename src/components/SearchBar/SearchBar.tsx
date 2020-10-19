@@ -18,7 +18,6 @@ const SearchBar: React.FC<Props> = ({
   currencyOptions,
   regionOptions,
 }) => {
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [search, setSearch] = useRecoilState<string>(searchState);
   const [language, setLanguage] = useRecoilState<string>(languageState);
@@ -60,7 +59,7 @@ const SearchBar: React.FC<Props> = ({
       <div className="flex ">
         <div className="  flex-grow">
           <select
-            className=" transform translate-y-10 w-full rounded-l-3xl py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10  rounded-l-3xl py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -74,7 +73,7 @@ const SearchBar: React.FC<Props> = ({
         </div>
         <div className="flex-grow">
           <select
-            className=" transform translate-y-10 w-full  py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10   py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
@@ -88,12 +87,11 @@ const SearchBar: React.FC<Props> = ({
         </div>
         <div className="flex-grow">
           <select
-            className=" transform translate-y-10  w-full rounded-r-3xl p-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" transform translate-y-10   rounded-r-3xl p-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={region}
             onChange={(e) => setRegion(e.target.value)}
           >
-            {console.log()}
             {regionOptions.map((rg, index) => (
               <option key={index} value={rg}>
                 {rg}

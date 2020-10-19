@@ -18,14 +18,14 @@ export const regionState: RecoilState<string> = atom({
 });
 
 export const regionListState: RecoilState<string[]> = atom({
-    key: "regionListState",
-    default: [""],
-  });
-  export const currencyListState: RecoilState<string[]> = atom({
-    key: "currencyListState",
-    default: [""],
-  });
-  export const laguageListState: RecoilState<string[]> = atom({
-    key: "laguageListState",
-    default: [""],
-  });
+  key: "regionListState",
+  default: [""],
+});
+export const currencyListState: RecoilState<string[]> = atom({
+  key: "currencyListState",
+  default: [""],
+});
+export const laguageListState: RecoilState<string[]> = atom({
+  key: "laguageListState",
+  default: [""],
+});
