@@ -11,7 +11,7 @@ import {
 } from "../../globalRecoilState/Atoms/Atoms";
 
 import { useQuery } from "@apollo/client";
-import { GET_LISTS } from "./../../queries/GetLists/GetLists";
+import { GET_LISTS } from "../../queries/GetLists/GetLists";
 
 const SearchBar: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +50,7 @@ const SearchBar: React.FC = () => {
     };
     getData().then((data: any) => {
       if (isMounted) setRegionList(data);
-    });
+    }).catch();
 
     return () => {
       isMounted = false;
@@ -78,7 +78,7 @@ const SearchBar: React.FC = () => {
     };
     getData().then((data: any) => {
       if (isMounted) setCurrencyList(data);
-    });
+    }).catch();
 
     return () => {
       isMounted = false;
@@ -106,7 +106,7 @@ const SearchBar: React.FC = () => {
     };
     getData().then((data: any) => {
       if (isMounted) setLanguageList(data);
-    });
+    }).catch();
 
     return () => {
       isMounted = false;
