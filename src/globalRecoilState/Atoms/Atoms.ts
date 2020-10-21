@@ -29,3 +29,7 @@ export const laguageListState: RecoilState<string[]> = atom({
   key: "laguageListState",
   default: [""],
 });
+export const infoDetailState:RecoilState<any> = atom({
+  key:"infoDetailState",
+  default: null
+})
