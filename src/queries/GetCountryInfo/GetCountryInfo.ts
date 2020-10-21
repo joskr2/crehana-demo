@@ -11,7 +11,6 @@ const GET_COUNTRY_INFO = gql`
         symbol
       }
       area
-      gini
       populationDensity
       nativeName
       numericCode
@@ -30,7 +29,6 @@ const GET_COUNTRY_INFO = gql`
         symbol
       }
       area
-      gini
       populationDensity
       nativeName
       numericCode
