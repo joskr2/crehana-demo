@@ -7,7 +7,7 @@ import { GET_COUNTRY_INFO } from "./../../queries/GetCountryInfo/GetCountryInfo"
 const Card: React.FC = () => {
   const searchTerm = useRecoilValue<string>(searchState);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [infoDetail, setInfoDetail] = useState<string[]>([""]);
+  const [infoDetail, setInfoDetail] = useState();
   const { data } = useQuery(GET_COUNTRY_INFO, {
     variables: {
       name: searchTerm,
@@ -18,80 +18,24 @@ const Card: React.FC = () => {
   useEffect(() => {
     let isMounted = true; // note this flag denote mount status
 
-    const functionWithPromise = (item: any) => {
-      //a function that returns a promise
-      return Promise.resolve(item);
-    };
-    const anAsyncFunction = async (item: any) => {
-      return functionWithPromise(item);
-    };
-
     const getData = async () => {
-      if (data !== undefined) {
+      if (data) {
         if (
-          data.searchByName !== undefined &&
-          data.searchByName !== null &&
-          data.searchByName.length != null &&
-          data.searchByName.length > 0
+          data && data.searchByName&&data.searchByName[0]
         ) {
-          data.searchByName!.map(
-            (a: {
-              name: any;
-              capital: any;
-              currencies: any;
-              area: any;
-              populationDensity: any;
-              nativeName: any;
-              numericCode: any;
-              population: any;
-              flag: any;
-            }) =>
-              anAsyncFunction({
-                name: a.name,
-                capital: a.capital,
-                currencies: a.currencies,
-                area: a.area,
-                populationDensity: a.populationDensity,
-                nativeName: a.nativeName,
-                numericCode: a.numericCode,
-                population: a.population,
-                flag: a.flag,
-              })
-          );
+          return await  data && data.searchByName&&data.searchByName[0]
         } else if (
-          data.searchByAlpha2Code !== undefined &&
-          data.searchByAlpha2Code !== null &&
-          data.searchByAlpha2Code.length != null &&
-          data.searchByAlpha2Code.length > 0
+          data && data.searchByAlpha2Code&&data.searchByAlpha2Code[0]
         ) {
-          data.searchByAlpha2Code!.map(
-            (a: {
-              name: any;
-              capital: any;
-              currencies: any;
-              area: any;
-              populationDensity: any;
-              nativeName: any;
-              numericCode: any;
-              population: any;
-              flag: any;
-            }) =>
-              anAsyncFunction({
-                name: a.name,
-                capital: a.capital,
-                currencies: a.currencies,
-                area: a.area,
-                populationDensity: a.populationDensity,
-                nativeName: a.nativeName,
-                numericCode: a.numericCode,
-                population: a.population,
-                flag: a.flag,
-              })
-          );
+          return await data && data.searchByAlpha2Code&&data.searchByAlpha2Code[0]
         }
-        return [""];
+        else{
+          return {};
+        }
       }
-      return [""];
+      else {
+        return {};
+      }
     };
     getData().then((data: any) => {
       if (isMounted) setInfoDetail(data);
@@ -100,15 +44,18 @@ const Card: React.FC = () => {
     return () => {
       isMounted = false;
     }; // use effect cleanup to set flag false, if unmounted
-  }, [data, setInfoDetail]);
+  }, [data]);
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      {/* {infoDetail.map((info)=> <div>{info.name}</div>)} */}
       <img className="w-full" src={""} alt="country_flag" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2"></div>
         <p className="text-gray-700 text-base">
-          <strong>Código: </strong> 
+  {/* <strong>Código: {infoDetail && infoDetail.name} </strong>  */}
+          
+          {/* {console.log( data && data.searchByAlpha2Code,infoDetail,"info")} */}
         </p>
         <p className="text-gray-700 text-base">
           <strong>Capital: </strong> 
