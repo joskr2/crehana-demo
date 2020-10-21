@@ -48,7 +48,7 @@ const Card: React.FC = () => {
     return (
         <>
             {
-                infoDetail && infoDetail.name ? <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                infoDetail && infoDetail.name ? <div className="p-8 max-w-sm rounded overflow-hidden shadow-lg">
                     <img className="w-full" src={`${infoDetail && infoDetail.flag && infoDetail.flag.svgFile}`}
                          alt="country_flag"/>
                     <div className="px-6 py-4">
