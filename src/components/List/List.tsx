@@ -18,15 +18,23 @@ const List: React.FC = () => {
         offset: 0,
         first: 10,
         filter:{
-            officialLanguages:{
-                name:languageFilter
-            },
-            currencies:{
-                code:currencyFilter
-            },
-            regionalBlocs:{
-                name:regionFilter
-            }
+            OR: [
+                {
+                    currencies: {
+                        name: currencyFilter
+                    }
+                },
+                {
+                    regionalBlocs: {
+                        name: regionFilter
+                    }
+                },
+                {
+                    officialLanguages: {
+                        name: languageFilter
+                    }
+                }
+            ]
         }
     },
   });
