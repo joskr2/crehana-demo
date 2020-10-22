@@ -7,8 +7,8 @@ const Home: React.FC = () => {
   return (
     <>
       <SearchBar />
-      <Card/>
-      <List/>
+      <Card />
+      <List />
     </>
   );
 };

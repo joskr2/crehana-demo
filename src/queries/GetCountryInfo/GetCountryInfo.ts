@@ -2,7 +2,6 @@ import { gql } from "@apollo/client";
 
 const GET_COUNTRY_INFO = gql`
   query Country($name: String!, $alpha2Code: String!) {
-
     searchByName: Country(name: $name) {
       name
       capital
