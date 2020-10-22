@@ -16,7 +16,7 @@ const List: React.FC = () => {
   const { data } = useQuery(GET_COUNTRIES_LIST, {
     variables: {
         offset: 0,
-        first: 100,
+        first: 10,
         filter:{
             officialLanguages:{
                 name:languageFilter
@@ -30,7 +30,6 @@ const List: React.FC = () => {
         }
     },
   });
-
 
   return (
     <table className="table-auto">
