@@ -38,7 +38,7 @@ Frontend:
 ## Live demo
 
 
-
+https://inspiring-ritchie-43d2d2.netlify.app/
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
