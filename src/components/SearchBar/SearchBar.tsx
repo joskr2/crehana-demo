@@ -48,9 +48,11 @@ const SearchBar: React.FC = () => {
       }
       return [""];
     };
-    getData().then((data: any) => {
-      if (isMounted) setRegionList(data);
-    }).catch();
+    getData()
+      .then((data: any) => {
+        if (isMounted) setRegionList(data);
+      })
+      .catch();
 
     return () => {
       isMounted = false;
@@ -76,9 +78,11 @@ const SearchBar: React.FC = () => {
       }
       return [""];
     };
-    getData().then((data: any) => {
-      if (isMounted) setCurrencyList(data);
-    }).catch();
+    getData()
+      .then((data: any) => {
+        if (isMounted) setCurrencyList(data);
+      })
+      .catch();
 
     return () => {
       isMounted = false;
@@ -104,9 +108,11 @@ const SearchBar: React.FC = () => {
       }
       return [""];
     };
-    getData().then((data: any) => {
-      if (isMounted) setLanguageList(data);
-    }).catch();
+    getData()
+      .then((data: any) => {
+        if (isMounted) setLanguageList(data);
+      })
+      .catch();
 
     return () => {
       isMounted = false;
@@ -121,7 +127,7 @@ const SearchBar: React.FC = () => {
             className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
             id="search"
             type="text"
-            placeholder="Buscar por pais o código"
+            placeholder="Buscar"
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className="p-4 ">
@@ -138,7 +144,7 @@ const SearchBar: React.FC = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
+                />
               </svg>
             </button>
           </div>
@@ -146,15 +152,15 @@ const SearchBar: React.FC = () => {
       </div>
 
       <div className="flex ">
-        <div className="  flex-grow">
+        <div className=" pl-8  flex-grow">
           <select
-            className=" transform translate-y-10  rounded-l-3xl py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className=" w-24 transform translate-y-10  rounded-l-3xl py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
           >
             {laguageList.map((lg, index) => (
-              <option key={index} value={lg}>
+              <option  className="flex-wrap" key={index} value={lg}>
                 {lg}
               </option>
             ))}
@@ -162,7 +168,7 @@ const SearchBar: React.FC = () => {
         </div>
         <div className="flex-grow">
           <select
-            className=" transform translate-y-10   py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className="  w-24 transform translate-y-10   py-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
@@ -174,9 +180,9 @@ const SearchBar: React.FC = () => {
             ))}
           </select>
         </div>
-        <div className="flex-grow">
+        <div className=" pr-8 flex-grow">
           <select
-            className=" transform translate-y-10   rounded-r-3xl p-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
+            className="  w-16 transform translate-y-10   rounded-r-3xl p-4  text-white leading-tight focus:outline-none bg-blue-500 border-solid border-gray-800 align-middle items-center "
             id="select-1"
             value={region}
             onChange={(e) => setRegion(e.target.value)}

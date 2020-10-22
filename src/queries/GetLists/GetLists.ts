@@ -1,16 +1,16 @@
-import { gql } from "@apollo/client";
+import {gql} from "@apollo/client";
 
 const GET_LISTS = gql`
-  query Country {
-    Language {
-      name
+    query Country {
+        Language {
+            name
+        }
+        Currency {
+            name
+        }
+        Region {
+            name
+        }
     }
-    Currency {
-      name
-    }
-    Region {
-      name
-    }
-  }
 `;
-export { GET_LISTS };
+export {GET_LISTS};
