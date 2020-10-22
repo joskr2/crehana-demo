@@ -33,3 +33,7 @@ export const infoDetailState: RecoilState<any> = atom({
   key: "infoDetailState",
   default: null,
 });
+export const setAllCountries: RecoilState<any> = atom({
+  key: "setAllCountries",
+  default: null,
+});
