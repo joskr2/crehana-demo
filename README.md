@@ -1,12 +1,12 @@
 
-# Store clone
+# Crehana demo
 
-Store clone is a ecommerce inspired on Amazon.
+An application that allows you to find information about the different
+countries of the world
 
 ## Installation
 
 Clone this repository on your local machine 
-
 
 
 ## Usage
