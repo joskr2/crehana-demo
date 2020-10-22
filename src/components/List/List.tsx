@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {useRecoilValue, useRecoilState} from "recoil";
+import React from "react";
+import {useRecoilValue} from "recoil";
 import {useQuery} from "@apollo/client";
 import {GET_COUNTRIES_LIST} from "../../queries/GetContriesList/GetCountriesList";
 import {
@@ -49,7 +49,7 @@ const List: React.FC = () => {
                         <th className="px-4 py-2">Capital</th>
                         <th className="px-4 py-2">Bandera</th>
                         <th className="px-4 py-2">Moneda</th>
-                        <th className="px-4 py-2">Área</th>
+
                         <th className="px-4 py-2">Denominación</th>
                     </tr>
                     </thead>
@@ -67,7 +67,7 @@ const List: React.FC = () => {
                                     country.currencies &&
                                     country.currencies[0].symbol
                                 }</td>
-                                <td className="border px-4 py-2">{country.area + " millones km²"}</td>
+
                                 <td className="border px-4 py-2">{country.demonym}</td>
 
                             </tr>

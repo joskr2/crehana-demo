@@ -7,8 +7,10 @@ const Home: React.FC = () => {
   return (
     <>
       <SearchBar />
-      <Card />
-      <List />
+      <div className="flex flex-wrap place-content-center">
+          <div className="mt-8 " > <Card /> </div>
+          <div className="mt-8 ml-8"> <List /></div>
+      </div>
     </>
   );
 };
